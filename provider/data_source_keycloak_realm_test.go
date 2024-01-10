@@ -2,6 +2,7 @@ package provider
 
 import (
 	"fmt"
+	"time"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
@@ -16,7 +17,10 @@ func TestAccKeycloakDataSourceRealm_basic(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		ProviderFactories: testAccProviderFactories,
-		PreCheck:          func() { testAccPreCheck(t) },
+		PreCheck:          func() {
+			testAccPreCheck(t)
+			time.Sleep(10 * time.Second)
+		},
 		CheckDestroy:      testAccCheckKeycloakRealmDestroy(),
 		Steps: []resource.TestStep{
 			{
