@@ -17,7 +17,7 @@ func TestAccKeycloakDataSourceRealm_basic(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		ProviderFactories: testAccProviderFactories,
-		PreCheck:          func() {
+		PreCheck: func() {
 			testAccPreCheck(t)
 			time.Sleep(10 * time.Second)
 		},
