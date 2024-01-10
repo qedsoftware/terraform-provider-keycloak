@@ -58,6 +58,8 @@ jobs:
     needs:
       - verify
     runs-on: ubuntu-latest
+    permissions:
+      packages: read
     strategy:
       matrix:
         keycloak-version:
