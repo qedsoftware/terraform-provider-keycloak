@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   verify:
@@ -60,9 +61,7 @@ jobs:
     strategy:
       matrix:
         keycloak-version:
-          - '21.0.1'
-          - '20.0.5'
-          - '19.0.2'
+          - '23.0.3'
       fail-fast: false
     concurrency:
       group: ${{ github.head_ref || github.run_id }}-${{ matrix.keycloak-version }}
@@ -71,7 +70,7 @@ jobs:
       keycloak:
         # we have to use a custom docker image for these tests, since it's not possible to provide command-line args
         # to a service container.  see https://github.com/actions/runner/issues/2139
-        image: mrparkers/keycloak-dev:${{ matrix.keycloak-version }}
+        image: ghcr.io/qedsoftware/keycloak-dev:${{ matrix.keycloak-version }}
         ports:
           - 8080:8080
         env:
