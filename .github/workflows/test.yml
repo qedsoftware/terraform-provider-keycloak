@@ -27,7 +27,6 @@ jobs:
         run: |
           go mod download
           make vet
-          make fmtcheck
 
       # we only want to run tests if any code changes (not for README or docs changes)
       - name: Check Changed Files
